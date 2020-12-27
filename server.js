@@ -3,7 +3,6 @@ import cors from "cors";
 import multer from "multer";
 import vision from "@google-cloud/vision";
 import fs from "fs";
-import { SSL_OP_EPHEMERAL_RSA } from "constants";
 
 const app = express();
 const port = process.env.PORT || 8001;
