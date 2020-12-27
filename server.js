@@ -6,7 +6,7 @@ import fs from "fs";
 import { SSL_OP_EPHEMERAL_RSA } from "constants";
 
 const app = express();
-const port = (process.env.PORT = 8001);
+const port = process.env.PORT || 8001;
 app.use(express.json());
 app.use(cors());
 
