@@ -141,9 +141,10 @@ const createHtmlPage = (detections) => {
   console.log("html=" + htmlContent);
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = dirname(__filename);
+  console.log(`${__dirname}/views/test.html`);
 
-  fs.appendFile(`${__dirname}views/test.html`, htmlContent, function (err) {
-    if (err) throw err;
-    console.log("Saved!");
-  });
+  // fs.appendFile(`${__dirname}/views/test.html`, htmlContent, function (err) {
+  //   if (err) throw err;
+  //   console.log("Saved!");
+  // });
 };
