@@ -52,7 +52,7 @@ app.get("/api/html", (req, res) => {
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = dirname(__filename);
   console.log(__dirname);
-  //res.sendFile("./views/test.html");
+  res.sendFile("views/test.html", { root: __dirname });
 });
 
 app.listen(port, () => console.log(`Listening on ${port}`));
