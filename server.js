@@ -116,7 +116,7 @@ function removeFile() {
 }
 
 const createHtmlPage = (detections) => {
-  let htmlContent = "<html>";
+  let htmlContent = "<html><svg>";
   detections.map((element) => {
     let coord = [];
 
@@ -124,13 +124,10 @@ const createHtmlPage = (detections) => {
       coord.push({ x: index.x, y: index.y });
     });
 
-    let stringCoord = `${coord[0].x},${coord[0].y} ${coord[1].x},${coord[1].y} ${coord[2].x},${coord[2].y} ${coord[3].x},${coord[3].y}`;
-    console.log(stringCoord);
-
-    htmlContent += `<svg><polygon points="${coord[0].x},${coord[0].y} ${coord[1].x},${coord[1].y} ${coord[2].x},${coord[2].y} ${coord[3].x},${coord[3].y}" style="fill: lime; stroke: purple; strokeWidth: 1"/></svg>`;
+    htmlContent += `<polygon points="${coord[0].x},${coord[0].y} ${coord[1].x},${coord[1].y} ${coord[2].x},${coord[2].y} ${coord[3].x},${coord[3].y}" style="fill: lime; stroke: purple; stroke-width: 1"/>`;
   });
 
-  htmlContent += "</html>";
+  htmlContent += "</svg></html>";
 
   console.log("html=" + htmlContent);
   const __filename = fileURLToPath(import.meta.url);
