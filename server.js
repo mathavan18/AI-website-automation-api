@@ -110,7 +110,7 @@ const createHtmlPage = (detections) => {
   detections.map((element) => {
     let coord = [];
 
-    element?.boundingPoly?.vertices?.map((index) => {
+    element.boundingPoly.vertices.map((index) => {
       coord.push({ x: index.x, y: index.y });
     });
 
