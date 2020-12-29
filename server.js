@@ -95,12 +95,14 @@ async function getInfoFromGoogleVisionApi(filePath) {
   const documentTextdetections = result4.fullTextAnnotation;
   visionApiResult["document"] = documentTextdetections;
 
-  removeFile();
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = dirname(__filename);
+  const path = `${__dirname}/uploads/`;
+  removeFile(path);
   return visionApiResult;
 }
 
-function removeFile() {
-  let path = "./uploads/";
+function removeFile(path) {
   fs.readdir(path, (err, files) => {
     if (err) {
       console.log(err);
@@ -116,12 +118,17 @@ function removeFile() {
 }
 
 const createHtmlPage = (detections) => {
-  let htmlContent = "<html><svg>";
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = dirname(__filename);
+  const path = `${__dirname}/views/`;
+  removeFile(path);
+
+  let htmlContent = `<html><svg height="1000px" width="1000px">`;
   detections.map((element) => {
     let coord = [];
 
     element.boundingPoly.vertices.map((index) => {
-      coord.push({ x: index.x, y: index.y });
+      coord.push({ x: index.x * 1.5, y: index.y * 1.5 });
     });
 
     htmlContent += `<polygon points="${coord[0].x},${coord[0].y} ${coord[1].x},${coord[1].y} ${coord[2].x},${coord[2].y} ${coord[3].x},${coord[3].y}" style="fill: lime; stroke: purple; stroke-width: 1"/>`;
@@ -129,10 +136,6 @@ const createHtmlPage = (detections) => {
 
   htmlContent += "</svg></html>";
 
-  console.log("html=" + htmlContent);
-  const __filename = fileURLToPath(import.meta.url);
-  const __dirname = dirname(__filename);
-  console.log(`${__dirname}/views/test.html`);
   const filepath = `${__dirname}/views/test.html`;
 
   fs.appendFile(filepath, htmlContent, function (err) {
