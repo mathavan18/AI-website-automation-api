@@ -130,8 +130,8 @@ const createHtmlPage = (detections) => {
   });
 
   console.log("html=" + htmlContent);
-  // fs.appendFile("test.html", htmlContent, function (err) {
-  //   if (err) throw err;
-  //   console.log("Saved!");
-  // });
+  fs.appendFile("test.html", htmlContent, function (err) {
+    if (err) throw err;
+    console.log("Saved!");
+  });
 };
