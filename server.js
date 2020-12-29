@@ -107,9 +107,9 @@ function removeFile() {
 }
 
 const createHtmlPage = (detections) => {
+  let htmlContent = "";
   detections.map((element) => {
     let coord = [];
-    let htmlContent = "";
 
     element.boundingPoly.vertices.map((index) => {
       coord.push({ x: index.x, y: index.y });
