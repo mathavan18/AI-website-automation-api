@@ -46,6 +46,10 @@ app.post("/api/upload", upload.single("image_file"), (req, res) => {
     });
 });
 
+app.get("/api/html", (req, res) => {
+  res.sendFile("./views/test.html");
+});
+
 app.listen(port, () => console.log(`Listening on ${port}`));
 
 async function getInfoFromGoogleVisionApi(filePath) {
