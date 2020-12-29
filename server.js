@@ -42,7 +42,7 @@ app.post("/api/upload", upload.single("image_file"), (req, res) => {
       res.status(200).send(value);
     })
     .catch((err) => {
-      res.status(500).send(err);
+      res.status(500).send("Cannot connect to Google Vision API");
     });
 });
 
@@ -51,10 +51,12 @@ app.listen(port, () => console.log(`Listening on ${port}`));
 async function getInfoFromGoogleVisionApi(filePath) {
   // Creates a client
   const client = new vision.ImageAnnotatorClient();
+
   let visionApiResult = {
     colors: null,
     text: null,
     logos: null,
+    document: null,
   };
 
   // Performs label detection on the image file
@@ -77,6 +79,11 @@ async function getInfoFromGoogleVisionApi(filePath) {
   const [result3] = await client.textDetection(filePath);
   const detections = result3.textAnnotations;
   visionApiResult["text"] = detections;
+
+  // Performs text detection on the local file
+  const [result4] = await client.documentTextDetection(filePath);
+  const documentTextdetections = result4.textAnnotations;
+  visionApiResult["document"] = documentTextdetections;
 
   removeFile();
   return visionApiResult;
