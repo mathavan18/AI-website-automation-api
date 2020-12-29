@@ -47,6 +47,7 @@ app.post("/api/upload", upload.single("image_file"), (req, res) => {
 });
 
 app.get("/api/html", (req, res) => {
+  console.log(__dirname);
   res.sendFile("./views/test.html");
 });
 
