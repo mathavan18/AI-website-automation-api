@@ -116,7 +116,7 @@ function removeFile() {
 }
 
 const createHtmlPage = (detections) => {
-  let htmlContent = "";
+  let htmlContent = "<html>";
   detections.map((element) => {
     let coord = [];
 
@@ -127,16 +127,10 @@ const createHtmlPage = (detections) => {
     let stringCoord = `${coord[0].x},${coord[0].y} ${coord[1].x},${coord[1].y} ${coord[2].x},${coord[2].y} ${coord[3].x},${coord[3].y}`;
     console.log(stringCoord);
 
-    htmlContent += `
-            <svg>
-              <polygon
-                points=${stringCoord}
-                style={{ fill: "lime", stroke: "purple", strokeWidth: "1" }}
-              />
-              Sorry, your browser does not support inline SVG.
-            </svg>
-          `;
+    htmlContent += `<svg><polygon points=${stringCoord} style= "fill: lime, stroke: purple, strokeWidth: 1"/></svg>`;
   });
+
+  htmlContent += "</html>";
 
   console.log("html=" + htmlContent);
   const __filename = fileURLToPath(import.meta.url);
