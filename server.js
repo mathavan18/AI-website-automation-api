@@ -129,8 +129,9 @@ const createHtmlPage = (detections) => {
           `;
   });
 
-  fs.appendFile("test.html", htmlContent, function (err) {
-    if (err) throw err;
-    console.log("Saved!");
-  });
+  console.log(htmlContent);
+  // fs.appendFile("test.html", htmlContent, function (err) {
+  //   if (err) throw err;
+  //   console.log("Saved!");
+  // });
 };
