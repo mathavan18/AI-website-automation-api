@@ -128,7 +128,7 @@ const createHtmlPage = (detections) => {
     let coord = [];
 
     element.boundingPoly.vertices.map((index) => {
-      coord.push({ x: index.x * 2, y: index.y * 2 });
+      coord.push({ x: index.x * 1.8, y: index.y * 1.8 });
     });
 
     htmlContent += `<polygon points="${coord[0].x},${coord[0].y} ${coord[1].x},${coord[1].y} ${coord[2].x},${coord[2].y} ${coord[3].x},${coord[3].y}" style="fill: lime; stroke: purple; stroke-width: 1"/>`;
