@@ -123,7 +123,7 @@ const createHtmlPage = (detections) => {
   const path = `${__dirname}/views/`;
   removeFile(path);
 
-  let htmlContent = `<html><svg>`;
+  let htmlContent = `<html><svg height="1000px" width="1000px">`;
   detections.map((element) => {
     let coord = [];
 
