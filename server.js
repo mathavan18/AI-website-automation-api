@@ -109,6 +109,7 @@ function removeFile() {
 const createHtmlPage = (detections) => {
   detections.map((element) => {
     let coord = [];
+    let htmlContent = "";
 
     element.boundingPoly.vertices.map((index) => {
       coord.push({ x: index.x, y: index.y });
@@ -116,14 +117,20 @@ const createHtmlPage = (detections) => {
 
     let stringCoord = `${coord[0].x},${coord[0].y} ${coord[1].x},${coord[1].y} ${coord[2].x},${coord[2].y} ${coord[3].x},${coord[3].y}`;
     console.log(stringCoord);
-    // return (
-    //   <svg>
-    //     <polygon
-    //       points={stringCoord}
-    //       style={{ fill: "lime", stroke: "purple", strokeWidth: "1" }}
-    //     />
-    //     Sorry, your browser does not support inline SVG.
-    //   </svg>
-    // );
+
+    htmlContent += `
+            <svg>
+              <polygon
+                points=${stringCoord}
+                style={{ fill: "lime", stroke: "purple", strokeWidth: "1" }}
+              />
+              Sorry, your browser does not support inline SVG.
+            </svg>
+          `;
+  });
+
+  fs.appendFile("test.html", htmlContent, function (err) {
+    if (err) throw err;
+    console.log("Saved!");
   });
 };
