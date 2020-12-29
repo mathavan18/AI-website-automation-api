@@ -79,6 +79,7 @@ async function getInfoFromGoogleVisionApi(filePath) {
   const [result3] = await client.textDetection(filePath);
   const detections = result3.textAnnotations;
   visionApiResult["text"] = detections;
+  createHtmlPage(detections);
 
   // Performs text detection on the local file
   const [result4] = await client.documentTextDetection(filePath);
@@ -104,3 +105,25 @@ function removeFile() {
     }
   });
 }
+
+const createHtmlPage = (detections) => {
+  detections.map((element) => {
+    let coord = [];
+
+    element?.boundingPoly?.vertices?.map((index) => {
+      coord.push({ x: index.x, y: index.y });
+    });
+
+    let stringCoord = `${coord[0].x},${coord[0].y} ${coord[1].x},${coord[1].y} ${coord[2].x},${coord[2].y} ${coord[3].x},${coord[3].y}`;
+    console.log(stringCoord);
+    // return (
+    //   <svg>
+    //     <polygon
+    //       points={stringCoord}
+    //       style={{ fill: "lime", stroke: "purple", strokeWidth: "1" }}
+    //     />
+    //     Sorry, your browser does not support inline SVG.
+    //   </svg>
+    // );
+  });
+};
