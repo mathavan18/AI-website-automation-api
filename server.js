@@ -3,6 +3,8 @@ import cors from "cors";
 import multer from "multer";
 import vision from "@google-cloud/vision";
 import fs from "fs";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 
 const app = express();
 const port = process.env.PORT || 8001;
@@ -47,8 +49,10 @@ app.post("/api/upload", upload.single("image_file"), (req, res) => {
 });
 
 app.get("/api/html", (req, res) => {
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = dirname(__filename);
   console.log(__dirname);
-  res.sendFile("./views/test.html");
+  //res.sendFile("./views/test.html");
 });
 
 app.listen(port, () => console.log(`Listening on ${port}`));
