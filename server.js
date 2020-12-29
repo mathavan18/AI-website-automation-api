@@ -82,7 +82,7 @@ async function getInfoFromGoogleVisionApi(filePath) {
 
   // Performs text detection on the local file
   const [result4] = await client.documentTextDetection(filePath);
-  const documentTextdetections = result4.textAnnotations;
+  const documentTextdetections = result4.fullTextAnnotation;
   visionApiResult["document"] = documentTextdetections;
 
   removeFile();
