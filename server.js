@@ -127,7 +127,7 @@ const createHtmlPage = (detections) => {
     let stringCoord = `${coord[0].x},${coord[0].y} ${coord[1].x},${coord[1].y} ${coord[2].x},${coord[2].y} ${coord[3].x},${coord[3].y}`;
     console.log(stringCoord);
 
-    htmlContent += `<svg><polygon points=${stringCoord} style= "fill: lime, stroke: purple, strokeWidth: 1"/></svg>`;
+    htmlContent += `<svg><polygon points="${coord[0].x},${coord[0].y} ${coord[1].x},${coord[1].y} ${coord[2].x},${coord[2].y} ${coord[3].x},${coord[3].y}" style="fill: lime; stroke: purple; strokeWidth: 1"/></svg>`;
   });
 
   htmlContent += "</html>";
